@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Camera.Data;
 
 namespace Camera.App
 {
@@ -11,6 +12,8 @@ namespace Camera.App
     {
         protected void Application_Start()
         {
+            //CameraBazarContex contex = new CameraBazarContex();
+            //contex.Database.Initialize(true);
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
