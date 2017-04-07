@@ -16,7 +16,8 @@ namespace Camera.Data
 
        public virtual DbSet<User> Users { get; set; }
        public virtual DbSet<Models.Entity.Camera> Cameras { get; set; }
-       
+       public virtual DbSet<Session> Sessions { get; set; }
+
     }
 }
     

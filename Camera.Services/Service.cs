@@ -1,8 +1,7 @@
 ﻿
-
 using Camera.Data;
 
-namespace CarDealerApp.Service
+namespace Camera.Services
 {
     public class Service
     {
