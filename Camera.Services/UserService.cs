@@ -31,5 +31,12 @@ namespace Camera.Services
             }
 
         }
+
+        public void Logout(string sessionId)
+        {
+            var session = Contex.Sessions.FirstOrDefault(x => x.SessionId == sessionId);
+            session.IsActive = false;
+            Contex.SaveChanges();
+        }
     }
 }

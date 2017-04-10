@@ -21,9 +21,9 @@ namespace Camera.App.Controllers
         public ActionResult Login()
         {
             var cookie = Request.Cookies.Get("sessionId");
-            if (AuthenticationManager.IsLoged(cookie.Value))
+            if (cookie != null && AuthenticationManager.IsLoged(cookie.Value))
             {
-                this.service.
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
@@ -32,6 +32,11 @@ namespace Camera.App.Controllers
         [HttpPost]
         public ActionResult Login([Bind(Include = "Username,Password")] LoginVM userLogin)
         {
+            if (ModelState.IsValid)
+            {
+                this.service.Login(userLogin);
+                return RedirectToAction("Index","Home");
+            }
             return View();
         }
 
@@ -55,8 +60,18 @@ namespace Camera.App.Controllers
                 return View();
             
         }
+        [Route("logout")]
+        public ActionResult Logout()
+        {
+            var cookie = Request.Cookies.Get("sessionId");
+            if (cookie != null && AuthenticationManager.IsLoged(cookie.Value))
+            {
+                this.service.Logout(cookie.Value);
+                
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
 
-        
     }
 }
