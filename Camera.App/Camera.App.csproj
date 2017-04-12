@@ -123,6 +123,9 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Camera\Add.cshtml" />
     <Content Include="Views\Camera\All.cshtml" />
+    <Content Include="Views\Camera\Details.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\User\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

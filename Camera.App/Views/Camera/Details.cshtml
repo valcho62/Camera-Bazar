@@ -1,0 +1,105 @@
+﻿@model Camera.Models.Entity.Camera
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h3>
+        @Html.DisplayFor(vm => vm.Make) @Html.DisplayFor(vm => vm.Model) - $@Html.DisplayFor(vm => vm.Price)
+        - @if (Model.Quantity == 0)
+        {
+            <span class="text-danger">Out of stock</span>
+        }
+        else
+        {
+            <span class="text-success">In stock</span>
+        }
+    </h3>
+    <img src="@Model.ImageURL" alt="hello" width="200" height="200" />
+    <br />
+    @if (Model.User != null)
+    {
+        
+        <h3>@Html.ActionLink(Model.User.Username, "Profile", "User",new {id = Model.Id},null)</h3>
+    }
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFullFrame)
+        </dt>
+
+        <dd>
+            @if (Model.IsFullFrame)
+            {
+                @:Yes
+            }
+            else
+            {
+                @:No
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinShatterSpeed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinShatterSpeed)"
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxShatterSpeed)
+        </dt>
+
+        <dd>
+            1/@Html.DisplayFor(model => model.MaxShatterSpeed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinISO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinISO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxISO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxISO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoResolution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoResolution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LightMetering)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LightMetering)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "All")
+</p>
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Camera.Models.View.Camera;
 using Camera.Services;
 
 namespace Camera.App.Controllers
@@ -20,80 +21,44 @@ namespace Camera.App.Controllers
         [Route("all")]
         public ActionResult All()
         {
-            return View(this.service.Contex.Cameras.ToList());
+            var cameraList = this.service.MakeCameraVms();
+            return View(cameraList);
         }
 
         // GET: Camera/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var camera = this.service.Contex.Cameras.Find(id);
+            return View(camera);
         }
 
         // GET: Camera/Create
         [Route("add")]
         public ActionResult Add()
         {
-            return View();
-        }
+            var session = Request.Cookies.Get("sessionId");
+            if (session != null && AuthenticationManager.IsLoged(session.Value))
+            {
+                return View();
+            }
+            return RedirectToAction("Login","User")
+   ;     }
 
         // POST: Camera/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [Route("add")]
+        public ActionResult Add(AddCameraVM camera)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                var session = Request.Cookies.Get("sessionId");
+                var user = AuthenticationManager.GetUser(session.Value);
+                this.service.Add(camera,user);
+                return RedirectToAction("All","Camera")
+   ;         }
+            return this.View();
         }
 
-        // GET: Camera/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Camera/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Camera/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Camera/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

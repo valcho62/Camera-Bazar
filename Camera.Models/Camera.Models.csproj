@@ -46,8 +46,10 @@
     <Compile Include="Entity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Camera\AddCameraVM.cs" />
+    <Compile Include="View\Camera\AllCameraVM.cs" />
     <Compile Include="View\User\LoginVM.cs" />
     <Compile Include="View\User\RegisterUserVM.cs" />
+    <Compile Include="View\User\UserProfileVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Binding\" />
